@@ -3,6 +3,7 @@ class CreateSales < ActiveRecord::Migration[6.0]
     create_table :sales do |t|
       t.references :user, null: false, foreign_key: true
       t.references :item, null: false, foreign_key: true
+      t.integer :buyer_id, null: true
       t.float :price
       t.datetime :closing_date
      

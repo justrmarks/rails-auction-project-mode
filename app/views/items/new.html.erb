@@ -1,0 +1,10 @@
+<h1> Add an item </h1>
+
+<%= form_with model: @item do |f|%>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.submit %>
+<% end %>

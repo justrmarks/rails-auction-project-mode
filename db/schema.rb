@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_185354) do
   create_table "sales", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "item_id", null: false
+    t.integer "buyer_id"
     t.float "price"
     t.datetime "closing_date"
     t.datetime "created_at", precision: 6, null: false
