@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sales
+  resources :items
   root 'home#index'
   #get '/login'
 
