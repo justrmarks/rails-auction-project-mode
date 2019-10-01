@@ -12,7 +12,7 @@
   <body>
     <p id="notice"><%= notice %></p>
     <div style="text-align: center; float: right; width: auto;">
-      <% if current_user %>
+      <% if logged_in? %>
         <%= button_to "Home", root_path, method: "get" %>
         <%= button_to "My Profile", current_user, method: "get" %>
         <%= button_to "Sell", new_sale_path, method: "get" %>
