@@ -9,17 +9,19 @@ class Sale < ApplicationRecord
   delegate :username, prefix: "seller", to: :seller
 
   after_find do |sale|
-    if sale.closing_date.to_time - DateTime.today.to_time < 0
+    if sale.closing_date.to_time - DateTime.now.to_time < 0
       sale.close_sale
     end
   end
 
-  def get_highest_bidder
+  def get_highest_bid
     self.bids.max_by {|bid| bid.amount}
   end
 
   def close_sale
-    winner = get_highest_bidder.user
+    winning_bid = get_highest_bid
+
+    winner = winning_bid.user if winning_bid
     self.active = false
     if winner
       self.buyer = winner
