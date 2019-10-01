@@ -34,9 +34,15 @@ class Sale < ApplicationRecord
 
 
 
-
-
-
+   def format_time 
+ 
+    timeElapsed = hours_until_close * 3600
+    seconds = timeElapsed % 60
+    minutes = (timeElapsed / 60) % 60
+    hours = (timeElapsed/3600)
+ 
+    hours.round.to_s + ":" + format("%02d",minutes.round.to_s)
+  end
 
 
 end
