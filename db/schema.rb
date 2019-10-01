@@ -12,23 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2019_09_30_185354) do
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "sales", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "item_id", null: false
+    t.integer "seller_id", null: false
     t.integer "buyer_id"
     t.float "price"
+    t.string "item_name"
+    t.string "description"
     t.datetime "closing_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_sales_on_item_id"
-    t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,6 +32,4 @@ ActiveRecord::Schema.define(version: 2019_09_30_185354) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "sales", "items"
-  add_foreign_key "sales", "users"
 end
