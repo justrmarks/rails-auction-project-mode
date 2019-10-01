@@ -9,7 +9,7 @@ class SalesController < ApplicationController
       @items = Item.all
     end
 
-    def create  
+    def create
       @sale = Sale.new(sale_params)
       @sale.user_id = session[:user_id]
       if @sale.save
@@ -26,7 +26,7 @@ class SalesController < ApplicationController
 
     private
     def sale_params
-      params.require(:sale).permit(:item_id, :price, :closing_date)
+      params.require(:sale).permit(:item_name, :description, :price, :closing_date)
     end
-    
+
 end
