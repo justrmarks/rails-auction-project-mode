@@ -2,11 +2,11 @@ class BidsController < ApplicationController
 
   def new
     @bid = Bid.new
-    # @sale =  Sale.find(params[:id])
+    @sale =  Sale.find(params[:id])
   end
 
   def create
-    	@bid = Bid.create(bid_params)
+    	@bid = Bid.new(bid_params)
     	@bid.user_id = current_user.id
       @user = @bid.user
       
