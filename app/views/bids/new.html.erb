@@ -1,0 +1,7 @@
+<h1>Create a new bid</h1>
+<%= form_with model: @bid do |f| %>
+  <div class="action">
+    <%= f.select :bid, ["25","50", "75", "100"]%>
+    <%= f.submit "Bid"%>
+  </div>
+<% end %>

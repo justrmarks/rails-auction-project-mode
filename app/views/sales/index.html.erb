@@ -1,7 +1,9 @@
-<h1>HomePage!</h1>
-
-<p><h2>Here will be the search bar.</h2></p>
-
-<p><h2>Here will be the list of all sales.</h2></p>
-
+<h1>All sales:</h1>
+<% @sales.each do |sale| %>
+  <p>
+    <%= sale.item.name %> for $<%= sale.price %> <br>
+    posted by: <%= sale.user.username %>
+    <%= link_to "New Bid", new_bid_path(:sale => sale.id) %>
+  </p>
+<% end %>
 
