@@ -23,6 +23,7 @@ class SalesController < ApplicationController
     def create
       @sale = Sale.new(sale_params)
       @sale.seller_id = session[:user_id]
+      @sale.owner_id = session[:user_id]
       @sale.active = true
       if @sale.save
         redirect_to root_path

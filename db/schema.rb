@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_144011) do
 
   create_table "sales", force: :cascade do |t|
     t.integer "seller_id", null: false
-    t.integer "buyer_id"
+    t.integer "owner_id"
     t.float "price"
     t.string "name"
     t.string "description"

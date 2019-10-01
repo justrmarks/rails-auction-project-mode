@@ -3,10 +3,9 @@ class BidsController < ApplicationController
   def create
       @bid = Bid.new(bid_params)
       @sale = Sale.find(bid_params[:sale_id])
-      #byebug
       @bid.user_id = current_user.id
       
-      if @sale.closing_date - Time.now >0
+      if @sale.active
         @sale.price = @sale.price + @bid.amount
         if @bid.save
           @sale.save

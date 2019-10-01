@@ -20,7 +20,7 @@
   </div>
 
   <div class="field">
-    <%= f.datetime_select :closing_date, prompt: true, start_year: Date.today.year, selected: DateTime.now, end_year: Date.today.year + 2%>
+    <%= f.datetime_select :closing_date, prompt: true, start_year: Date.today.year, selected: Time.zone.now, end_year: Date.today.year + 2%>
   </div>
 
   <%= f.submit %>

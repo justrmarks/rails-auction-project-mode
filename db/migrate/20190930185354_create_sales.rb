@@ -2,7 +2,7 @@ class CreateSales < ActiveRecord::Migration[6.0]
   def change
     create_table :sales do |t|
       t.integer :seller_id, null: false
-      t.integer :buyer_id, null: true
+      t.integer :owner_id, null: true
       t.float :price
       t.string :name
       t.string :description
