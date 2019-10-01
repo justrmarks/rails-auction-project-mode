@@ -7,6 +7,7 @@ class CreateSales < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :description
       t.datetime :closing_date
+      t.boolean :active
 
       t.timestamps
     end
