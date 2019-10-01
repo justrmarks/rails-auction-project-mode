@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_185354) do
+ActiveRecord::Schema.define(version: 2019_10_01_144011) do
 
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
+  create_table "bids", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "sale_id"
+    t.integer "bid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -22,13 +23,12 @@ ActiveRecord::Schema.define(version: 2019_09_30_185354) do
   create_table "sales", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "item_id", null: false
-    t.integer "buyer_id"
     t.float "price"
+    t.string "name"
+    t.string "description"
     t.datetime "closing_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_sales_on_item_id"
-    t.index ["user_id"], name: "index_sales_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

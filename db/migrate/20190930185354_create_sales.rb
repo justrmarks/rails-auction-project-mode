@@ -5,7 +5,7 @@ class CreateSales < ActiveRecord::Migration[6.0]
       t.references :item, null: false, foreign_key: true
       t.integer :buyer_id, null: true
       t.float :price
-      t.string :item_name
+      t.string :name
       t.string :description
       t.datetime :closing_date
 
