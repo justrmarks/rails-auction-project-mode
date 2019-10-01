@@ -8,10 +8,14 @@ class Sale < ApplicationRecord
   # has_many :offers
   delegate :username, prefix: "seller", to: :seller
 
+  def hours_until_close
+    (self.closing_date.to_time - DateTime.now.to_time) / 1.hours
+  end
+
 
   # Methods
   # def get_highest_offer
-  #   self.offers
+  #   self.offers.max_by {|offer| offer.amount}
   # end
   #
   # def close_sale
