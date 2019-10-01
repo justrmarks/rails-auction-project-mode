@@ -1,9 +1,10 @@
 class SalesController < ApplicationController
-  before_action :get_sale, only: [:show, :edit, :update, :destroy]
+    before_action :get_sale, only: [:show, :edit, :update, :destroy]
     # Gets a view with all Sales on it.
     # GET /sales
     def index
       @sales = Sale.all
+      @bid = Bid.new
     end
 
     # Gets a view containing the Sale with given :id.

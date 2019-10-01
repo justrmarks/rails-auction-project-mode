@@ -4,9 +4,10 @@
     <%= link_to sale.name, sale %> for $<%= sale.price %> <br>
     posted by: <%= sale.seller.username %>
 
-    <%= form_with url: create_bid_path(:sale_id => sale.id) do |f| %>
+    <%= form_with model: @bid, url: create_bid_path do |f| %>
       <div class="action">
         <%= f.select :amount, ["25","50", "75", "100"]%>
+        <%= f.hidden_field :sale_id, value: sale.id %> 
         <%= f.submit "Bid"%>
       </div>
     <% end %>

@@ -1,10 +1,10 @@
 class BidsController < ApplicationController
 
   def create
-      @sale =  Sale.find(params[:sale_id])
-    	@bid = Bid.new(bid_params)
+      @bid = Bid.new(bid_params)
+      @sale = Sale.find(bid_params[:sale_id])
+      #byebug
       @bid.user_id = current_user.id
-      @bid.sale_id = @sale.id
       
       if @sale.closing_date - Time.now >0
         @sale.price = @sale.price + @bid.amount
@@ -22,7 +22,7 @@ class BidsController < ApplicationController
   private
 
   def bid_params
-    params.permit(:amount)
+    params.require(:bid).permit(:amount, :sale_id)
   end
 
 end
