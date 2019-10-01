@@ -7,5 +7,16 @@
 </div>
 
 <div class="time">
-  <h3>You only have <%= @sale.hours_until_close.round(10)%> hours to try and grab it..</h3>
+  <% if @sale.active %>
+    <h3> The auction will be ended in <%= @sale.format_time %> hours.</h3>
+    <ol>
+    <% @sale.bids.each do |bid| %>
+      <li> <%= bid.username %> - $<%= bid.amount %> </li>
+    <% end %>
+    </ol>
+  <% else %>
+    <h3>The auction has ended.</h3>
+    <p>Winning bid is made by <%= @sale.buyer.name %> for <%= @sale.get_highest_bid.amount %> </p>
+  <% end %>
+
 </div>
