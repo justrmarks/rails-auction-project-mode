@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_144011) do
     t.string "name"
     t.string "description"
     t.datetime "closing_date"
+    t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
