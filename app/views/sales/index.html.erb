@@ -1,9 +1,15 @@
 <h1>All sales:</h1>
 <% @sales.each do |sale| %>
   <p>
-    <%= sale.item.name %> for $<%= sale.price %> <br>
-    posted by: <%= sale.user.username %>
-    <%= link_to "New Bid", new_bid_path(:sale => sale.id) %>
+    <%= sale.name %> for $<%= sale.price %> <br>
+    posted by: <%= sale.seller.username %>
+
+    <%= form_with url: create_bid_path(:sale_id => sale.id) do |f| %>
+      <div class="action">
+        <%= f.select :amount, ["25","50", "75", "100"]%>
+        <%= f.submit "Bid"%>
+      </div>
+    <% end %>
   </p>
 <% end %>
 

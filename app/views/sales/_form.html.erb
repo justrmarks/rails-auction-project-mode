@@ -1,0 +1,28 @@
+<%=form_with(model: sale) do |f| %>
+
+  <div class="field">
+    <%= f.label :item_name %>
+    <%= f.text_field :item_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :closing_date %>
+  </div>
+
+  <div class="field">
+    <%= f.datetime_select :closing_date %>
+  </div>
+  
+  <%= f.submit %>
+
+<% end %>

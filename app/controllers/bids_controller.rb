@@ -1,41 +1,28 @@
 class BidsController < ApplicationController
 
-  def new
-    @bid = Bid.new
-    @sale =  Sale.find(params[:id])
-  end
-
   def create
+      @sale =  Sale.find(params[:sale_id])
     	@bid = Bid.new(bid_params)
-    	@bid.user_id = current_user.id
-      @user = @bid.user
+      @bid.user_id = current_user.id
+      @bid.sale_id = @sale.id
       
       if @sale.closing_date - Time.now >0
-        @sale.price = @sale.price + @bid.bid
-
-        respond_to do |format|
-          if @bid.save
-            @sale.save
-            @user.save
-            format.html {redirect_to :back, :notice => "Bid was succesfully placed." }
-            format.json {render :json => @sale, :status=> :created, :location => @sale}
-          else
-            format.html {render :action => "new" }
-            format.json {render :json => @bid.errors, :status => :unprocessable_entity }
-          end
+        @sale.price = @sale.price + @bid.amount
+        if @bid.save
+          @sale.save
+          redirect_to root_path, :notice => "Bid was successfully placed." 
+        else
+          redirect_to root_path, :notice => "Please enter a valid amount."
         end
       else
-        respond_to do |format|
-          format.html { redirect_to :back, :notice => 'The auction has ended'}
-          format,json { render :json => @bid.errors, :status => :unprocessable_entity }
-        end
+        redirect_to root_path, :notice => 'The auction has ended.'
       end
   end
 
   private
 
   def bid_params
-    params.permit(:bid).require(:bid, :user_id, :sale_id)
+    params.permit(:amount)
   end
 
 end
