@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  resources :bids
   resources :sales
   resources :items
   root 'sales#index'
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  
 
   get 'signup', to: 'users#new', as: 'signup'  
   get 'login', to: 'sessions#new', as: 'login'

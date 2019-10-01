@@ -2,10 +2,10 @@ class Sale < ApplicationRecord
   # Buyer/seller relationship.
   belongs_to :seller, :foreign_key => "seller_id", :class_name => "User"
   has_one :buyer, :foreign_key => "buyer_id", :class_name => "User"
-  has_many :offers
+  # has_many :offers
   # What is being sold.
   # Auction bids.
-  # has_many :offers
+  has_many :bids
   delegate :username, prefix: "seller", to: :seller
 
   def hours_until_close
