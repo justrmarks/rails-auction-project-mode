@@ -15,14 +15,13 @@ class SalesController < ApplicationController
     # GET /sales/new
     def new
       @sale = Sale.new
-      @items = Item.all
     end
 
     # Creates a new Sale and saves it to the database with the given params.
     # POST /sales
     def create
       @sale = Sale.new(sale_params)
-      @sale.user_id = session[:user_id]
+      @sale.seller_id = session[:user_id]
       if @sale.save
         redirect_to root_path
       else
@@ -38,7 +37,7 @@ class SalesController < ApplicationController
 
       # Censor the params to make sure no bad guys take control of our app.
       def sale_params
-        params.require(:sale).permit(:item_name, :description, :price, :closing_date)
+        params.require(:sale).permit(:name, :description, :price, :closing_date)
       end
 
 end
