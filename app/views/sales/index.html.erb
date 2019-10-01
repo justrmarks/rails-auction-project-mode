@@ -1,7 +1,7 @@
 <h1>All sales:</h1>
 <% @sales.each do |sale| %>
   <p>
-    <%= sale.name %> for $<%= sale.price %> <br>
+    <%= link_to sale.name, sale %> for $<%= sale.price %> <br>
     posted by: <%= sale.seller.username %>
 
     <%= form_with url: create_bid_path(:sale_id => sale.id) do |f| %>
