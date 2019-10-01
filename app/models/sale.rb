@@ -8,22 +8,31 @@ class Sale < ApplicationRecord
   has_many :bids
   delegate :username, prefix: "seller", to: :seller
 
-  def hours_until_close
-    (self.closing_date.to_time - DateTime.now.to_time) / 1.hours
+  after_find do |sale|
+    if sale.closing_date.to_time - DateTime.now.to_time < 0
+      sale.close_sale
+    end
+  end
+
+  def get_highest_bid
+    self.bids.max_by {|bid| bid.amount}
+  end
+
+  def close_sale
+    winning_bid = get_highest_bid
+
+    winner = winning_bid.user if winning_bid
+    self.active = false
+    if winner
+      self.buyer = winner
+    end
+    self.save
   end
 
 
-  # Methods
-  # def get_highest_offer
-  #   self.offers.max_by {|offer| offer.amount}
-  # end
-  #
-  # def close_sale
-  # end
-  #
-  #
-  # def self.get_average_bid(item)
-  # end
+
+
+
 
 
 
