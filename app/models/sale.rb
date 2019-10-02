@@ -46,5 +46,16 @@ class Sale < ApplicationRecord
     Sale.all.select {|sale| sale.active}
   end
 
+  def winning_bid_amount
+    self.price + self.bids.sum(&:amount)
+  end
+
+  
+
+
+
+
+
+
 
 end
