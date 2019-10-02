@@ -2,8 +2,8 @@
 <% @sales.each do |sale| %>
   <a class="ui raised card" href=<%= sale_path(sale) %>>
   <div class="ui two column grid">
-    <div class="five wide column">
-      <div class="content">
+    <div class="six wide column">
+      <div class="center aligned content">
         <div class="header"><%= sale.name %></div>
         <div class="meta">
           <span class="category"><%= sale.seller.username %></span>
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="eleven wide column">
+    <div class="ten wide column">
       <img class="ui medium right floated image" src="<%= url_for(sale.img) if sale.img.attached?%>">
     </div>
   </div>
