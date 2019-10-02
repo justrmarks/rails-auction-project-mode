@@ -16,10 +16,20 @@
   <% end %>
 </div>
 
+<% if logged_in? %>
+  <%= form_with model: @bid, url: create_bid_path do |f| %>
+  <div class="action">
+    <%= f.select :amount, ["25","50", "75", "100"]%>
+    <%= f.hidden_field :sale_id, value: @sale.id %> 
+    <%= f.submit "Bid"%>
+  </div>
+  <% end %>
+<% end %>
+
 <div class="bid">
   <h3>Bidding history:</h3>
   <ul>
-  <% @sale.bids.each do |bid| %>
+  <% @recent_bids.each do |bid| %>
     <li> $<%= bid.amount %> placed by <%= bid.username %> on <%= bid.get_time_placed %></li>
   <% end %>
   </ul>

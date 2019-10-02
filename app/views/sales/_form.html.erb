@@ -10,7 +10,11 @@
 
 
 <%=form_with(model: sale) do |f| %>
-
+  <div class="field">
+    <%= f.label "Image" %>
+    <%= f.file_field :img %>
+  </div>
+  
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>

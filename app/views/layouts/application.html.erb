@@ -10,23 +10,18 @@
   </head>
 
   <body>
+    <h1>ThePirateBay</h1>
     <p id="alert"><%= alert %></p>
     <p id="notice"><%= notice %></p>
-    <nav class="navbar" style="text-align: center; float: right; width: auto;">
+    <nav class="ui top right fixed inverted vertical menu">
       <% if logged_in? %>
-        <%= button_to "Home", root_path, method: "get" %>
-        ----------
-        <%= button_to "My Profile", current_user, method: "get" %>
-        ----------
-        <%= button_to "Sell", new_sale_path, method: "get" %>
-        ----------
-        <%= button_to "Log Out", logout_path, method: "get" %>
-        ----------
-        <br>Logged in as <%= current_user.username %>.
+        <%= link_to "Home", root_path, {class: "item"} %>       
+        <%= link_to "My Profile", current_user, {class: "item"} %>        
+        <%= link_to "Sell", new_sale_path, {class: "item"} %>        
+        <%= link_to "Log Out (#{current_user.username})", logout_path, {class: "item"} %>
       <% else %>
-        <%= button_to "Sign Up", signup_path, method: "get" %>
-        ----------
-        <%= button_to "Log In", login_path, method: "get" %>
+        <%= link_to "Log In", login_path, {class: "item"} %>
+        <%= link_to "Sign Up", signup_path, {class: "item"} %>       
       <% end %>
     </nav>
     <%= yield %>

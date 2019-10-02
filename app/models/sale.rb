@@ -7,6 +7,9 @@ class Sale < ApplicationRecord
   # A Sale can receive many bids.
   has_many :bids
 
+  # ActiveStorage
+  has_one_attached :img
+
   # Return a Sale's seller's name.
   delegate :username, prefix: "seller", to: :seller
   validates :name, presence: true
