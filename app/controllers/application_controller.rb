@@ -1,15 +1,13 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?
   
-  def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
-    else
-      @current_user = nil
-    end
+  # Checks if a user is logged in.
+  def logged_in?
+    !!session[:user_id]
   end
 
-  def logged_in?
-    !!current_user
+  # Gets the current User if a user is logged in with :user_id.
+  def current_user
+    logged_in? ? User.find(session[:user_id]) : nil
   end
 end
