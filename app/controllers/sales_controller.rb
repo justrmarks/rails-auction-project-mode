@@ -25,10 +25,22 @@ class SalesController < ApplicationController
       @sale.seller_id = session[:user_id]
       @sale.owner_id = session[:user_id]
       @sale.active = true
-      if @sale.save
-        redirect_to root_path
+      if @sale.valid?
+        @sale.save
+        redirect_to root_path, notice: "Lot succesfully created!"
       else
         render :new
+      end
+    end
+
+    def edit
+    end
+
+    def update
+      if @sale.update(sale_params)
+        redirect_to root_path, notice: "Sale succesfully updated!"
+      else
+        render 'new'
       end
     end
 

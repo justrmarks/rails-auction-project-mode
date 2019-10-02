@@ -11,7 +11,7 @@
 
   <body>
     <p id="notice"><%= notice %></p>
-    <nav style="text-align: center; float: right; width: auto;">
+    <nav class="navbar" style="text-align: center; float: right; width: auto;">
       <% if logged_in? %>
         <%= button_to "Home", root_path, method: "get" %>
         ----------

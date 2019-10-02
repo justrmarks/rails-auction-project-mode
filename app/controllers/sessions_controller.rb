@@ -8,7 +8,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, notice: "Successfully logged in!"
     else
-      # NOT SHOWING ALERT
       flash.now[:notice] = "Email or password is invalid"
       render :new
     end

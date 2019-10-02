@@ -24,8 +24,5 @@ class User < ApplicationRecord
     end
   end
 
-  def 
-  end
-
 
 end

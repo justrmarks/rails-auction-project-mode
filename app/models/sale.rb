@@ -7,6 +7,11 @@ class Sale < ApplicationRecord
   # Auction bids.
   has_many :bids
   delegate :username, prefix: "seller", to: :seller
+  validates :name, presence: true
+  validates :description, presence: true, length: {maximum: 100,
+    too_long: "100 characters is the maximum allowed"}
+  validates :price, presence: true
+  
 
   after_find do |sale|
     if sale.closing_date < Time.zone.now
