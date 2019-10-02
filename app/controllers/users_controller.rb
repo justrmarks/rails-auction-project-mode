@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Before showing, editing, updating, or destroying a user, look them up.
-  before_action :set_user, only: [:show]
-
+  before_action :set_user, only: [:show, :edit, :update]
+  
   # Gets the show page for a User.
   # GET /users/:id
   def show
@@ -17,9 +17,24 @@ class UsersController < ApplicationController
   # POST /
   def create
     @user = User.new(user_params)
-    @user.save
-    session[:user_id] = @user.id
-    redirect_to root_path, notice: "Account successfully created!"
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Account succesfully created!"
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to root_path, notice: "Account succesfully updated!"
+    else
+      render 'edit'
+    end
   end
 
   private

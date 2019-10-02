@@ -1,3 +1,14 @@
+<% if sale.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% sale.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
 <%=form_with(model: sale) do |f| %>
 
   <div class="field">
@@ -12,7 +23,7 @@
 
   <div class="field">
     <%= f.label :price, "Starting bid" %>
-    <%= f.text_field :price %>
+    <%= f.number_field :price %>
   </div>
 
   <div class="field">

@@ -27,7 +27,8 @@ class SalesController < ApplicationController
     if @sale.save
       redirect_to root_path, notice: "Sale successfully created!"
     else
-      redirect_to new_sale_path, alert: "One or more of the fields were filled out incorrectly."
+      # redirect_to new_sale_path, alert: "One or more of the fields were filled out incorrectly."
+      render 'new'
     end
   end
 
