@@ -1,4 +1,4 @@
-<h2> <%= @sale.seller.username %> is selling <%= @sale.name%> for <%= @sale.price.round(4) %></h2>
+<h2> <%= @sale.seller.username %> is selling <%= @sale.name%> for <%= @sale.price %></h2>
 
 
 <div class="description">
@@ -8,7 +8,7 @@
 
 <div class="time">
   <% if @sale.active %>
-    <h3> The auction will be ended in <%= @sale.format_time %> hours.</h3>
+    <h3> The auction will be ended in <%= @sale.time_to_close %> hours.</h3>
     <ol>
     <% @sale.bids.each do |bid| %>
       <li> <%= bid.username %> - $<%= bid.amount %> </li>
@@ -16,7 +16,7 @@
     </ol>
   <% else %>
     <h3>The auction has ended.</h3>
-    <p>Winning bid is made by <%= @sale.owner.username %> for <%= @sale.get_highest_bid.amount %></p>
+    <p>Winning bid is made by <%= @sale.owner.username %> for <%= @sale.current_asking_price %></p>
   <% end %>
 
 </div>

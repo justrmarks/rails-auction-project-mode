@@ -1,8 +1,8 @@
-<h1>All sales:</h1>
+<h1>ThePirateBay</h1>
 <% @sales.each do |sale| %>
   <p>
     <%= link_to sale.name, sale %> for $<%= sale.price %> <br>
-    posted by: <%= sale.seller.username %>
+    posted by: <%= link_to sale.seller.username, sale.seller %>
     <% if logged_in? %>
       <%= form_with model: @bid, url: create_bid_path do |f| %>
         <div class="action">

@@ -1,11 +1,13 @@
 class Sale < ApplicationRecord
-  # Buyer/seller relationship.
+  # Buyer/seller relationship. The owner will start as the seller, and once
+  # a Sale is complete, the owner will transition to be the buyer.
   belongs_to :seller, :foreign_key => "seller_id", :class_name => "User"
   belongs_to :owner, :foreign_key => "owner_id", :class_name => "User"
-  # has_many :offers
-  # What is being sold.
-  # Auction bids.
+
+  # A Sale can receive many bids.
   has_many :bids
+
+  # Return a Sale's seller's name.
   delegate :username, prefix: "seller", to: :seller
   validates :name, presence: true
   validates :description, presence: true, length: {maximum: 100,
@@ -13,43 +15,63 @@ class Sale < ApplicationRecord
   validates :price, presence: true
   
 
+  # A callback on Sale access that checks whether or not a Sale should be closed.
   after_find do |sale|
     if sale.closing_date < Time.zone.now
       sale.close_sale
     end
   end
 
-  def get_highest_bid
-    self.bids.max_by {|bid| bid.amount}
-  end
-
+  # Used by the after_find callback. Closes a Sale.
   def close_sale
-    winning_bid = get_highest_bid
-    if winning_bid
-      winner = winning_bid.user
-      self.active = false
-      if winner
-        self.owner = winner
-      end
+    self.active = false
+    if winner?
+      self.owner = winner?
       self.save
     end
   end
 
+  # Determines the winner by the last Bid made.
+  def winner?
+    last_bid = self.bids.max_by {|bid| bid.created_at}
+    !!last_bid ? last_bid.user : nil
+  end
+
+  # Determines the current bid on the object.
+  def current_asking_price
+    self.price + self.bids.sum(&:amount)
+  end
+
+  # Returns a string representation of the time remaining until the Sale closes.
+  def time_to_close
+    timeElapsed = hours_until_close * 3600
+    minutes = (timeElapsed / 60) % 60
+    hours = (timeElapsed/3600)
+    hours.round.to_s + ":" + format("%02d",minutes.round.to_s)
+  end
+
+  # Gets the hours until closing time.
   def hours_until_close
     (self.closing_date.to_time - Time.zone.now.to_time) / 1.hours
   end
 
-  def format_time
-    timeElapsed = hours_until_close * 3600
-    minutes = (timeElapsed / 60) % 60
-    hours = (timeElapsed/3600)
-
-    hours.round.to_s + ":" + format("%02d",minutes.round.to_s)
-  end
-
-  def self.open_sales
+  # Get a list of Sales that are still active.
+  def self.get_open_sales
     Sale.all.select {|sale| sale.active}
   end
 
+  # Get a list of Sales that are no longer active.
+  def self.get_closed_sales
+    Sale.all.select {|sale| !sale.active}
+  end
 
+  # Get a list of open Sales created by seller with id user_id.
+  def self.get_open_sales_by_seller(user_id)
+    self.get_open_sales.select {|sale| sale.seller_id == user_id}
+  end
+
+  # Get a list of closed Sales created by seller with id user_id.
+  def self.get_closed_sales_by_seller(user_id)
+    self.get_closed_sales.select {|sale| sale.seller_id == user_id}
+  end
 end

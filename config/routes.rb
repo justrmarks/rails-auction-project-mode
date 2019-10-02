@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
-  resources :bids, only: [:destroy]
-  resources :sales
+  # Home page should direct to the sales index page.
   root 'sales#index'
-  
-  resources :users
+
+  # Routes for sessions.
   resources :sessions, only: [:new, :create, :destroy]
-  
-  post 'create_bid', to: 'bids#create', as: 'create_bid'
-  get 'signup', to: 'users#new', as: 'signup'  
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  # Routes for users.
+  resources :users, except: [:index]
+  get 'signup', to: 'users#new', as: 'signup'  
+  
+  # Sale resource.
+  resources :sales, except: [:destroy]
+  
+  #resources :bids, only: [:destroy]
+  post 'create_bid', to: 'bids#create', as: 'create_bid'
 end
