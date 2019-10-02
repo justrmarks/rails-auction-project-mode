@@ -1,22 +1,26 @@
-<h2> <%= @sale.seller.username %> is selling <%= @sale.name%> for <%= @sale.price %></h2>
-
+<h1><%= @sale.name %></h1>
+<h2>by <%= @sale.seller.username %></h2>
+<h3>Current asking price: $<%= @sale.current_asking_price %>
 
 <div class="description">
-  <h3>Here's what you need to know...</h3>
-  <p> <%= @sale.description%> </p>
+  <h3>Item Description: </h3>
+  <p><%= @sale.description%></p>
 </div>
 
 <div class="time">
   <% if @sale.active %>
-    <h3> The auction will be ended in <%= @sale.time_to_close %> hours.</h3>
-    <ol>
-    <% @sale.bids.each do |bid| %>
-      <li> <%= bid.username %> - $<%= bid.amount %> </li>
-    <% end %>
-    </ol>
+    <h3> The auction will end in <%= @sale.time_to_close %> hours.</h3>
   <% else %>
     <h3>The auction has ended.</h3>
-    <p>Winning bid is made by <%= @sale.owner.username %> for <%= @sale.current_asking_price %></p>
+    <p>Winning bid is made by <%= @sale.owner.username %> for $<%= @sale.current_asking_price %></p>
   <% end %>
+</div>
 
+<div class="bid">
+  <h3>Bidding history:</h3>
+  <ul>
+  <% @sale.bids.each do |bid| %>
+    <li> $<%= bid.amount %> placed by <%= bid.username %> on <%= bid.get_time_placed %></li>
+  <% end %>
+  </ul>
 </div>

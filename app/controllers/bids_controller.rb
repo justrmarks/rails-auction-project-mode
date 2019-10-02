@@ -8,9 +8,8 @@ class BidsController < ApplicationController
     @bid.user_id = current_user.id
       
     if @sale.active
-      @sale.price = @sale.price + @bid.amount
+      @bid.amount += @sale.current_asking_price
       if @bid.save
-        @sale.save
         redirect_to root_path, :notice => "Bid was successfully placed." 
       else
         redirect_to root_path, :notice => "Please enter a valid amount."
