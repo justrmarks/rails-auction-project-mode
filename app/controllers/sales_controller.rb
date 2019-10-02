@@ -2,10 +2,10 @@ class SalesController < ApplicationController
   # Before showing, editing, or updating a Sale, look them up.
   before_action :get_sale, only: [:show, :edit, :update]
 
-  # Gets a view with all Sales on it.
+  # Gets a view with all open Sales on it.
   # GET /sales
   def index
-    @sales = Sale.all
+    @sales = Sale.get_open_sales
     @bid = Bid.new
   end
 
