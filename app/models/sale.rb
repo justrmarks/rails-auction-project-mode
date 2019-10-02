@@ -20,7 +20,7 @@ class Sale < ApplicationRecord
 
   def close_sale
     winning_bid = get_highest_bid
-    if winning_bid 
+    if winning_bid
       winner = winning_bid.user
       self.active = false
       if winner
@@ -34,13 +34,16 @@ class Sale < ApplicationRecord
     (self.closing_date.to_time - Time.zone.now.to_time) / 1.hours
   end
 
-  def format_time 
- 
+  def format_time
     timeElapsed = hours_until_close * 3600
     minutes = (timeElapsed / 60) % 60
     hours = (timeElapsed/3600)
- 
+
     hours.round.to_s + ":" + format("%02d",minutes.round.to_s)
+  end
+
+  def self.open_sales
+    Sale.all.select {|sale| sale.active}
   end
 
 
