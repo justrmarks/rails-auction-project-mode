@@ -1,17 +1,23 @@
-<h1>ThePirateBay</h1>
+<div class="ui one stackable cards feed">
 <% @sales.each do |sale| %>
-  <p>
-    <%= link_to sale.name, sale %> for $<%= sale.current_asking_price %> <br>
-    posted by: <%= link_to sale.seller.username, sale.seller %>
-    <% if logged_in? %>
-      <%= form_with model: @bid, url: create_bid_path do |f| %>
-        <div class="action">
-          <%= f.select :amount, ["25","50", "75", "100"]%>
-          <%= f.hidden_field :sale_id, value: sale.id %> 
-          <%= f.submit "Bid"%>
+  <a class="ui raised card" href=<%= sale_path(sale) %>>
+  <div class="ui two column grid">
+    <div class="five wide column">
+      <div class="content">
+        <div class="header"><%= sale.name %></div>
+        <div class="meta">
+          <span class="category"><%= sale.seller.username %></span>
         </div>
-      <% end %>
-    <% end %>
-  </p>
+        <div class="description">
+        <p>for $<%= sale.current_asking_price %></p>
+        </div>
+      </div>
+    </div>
+    <div class="eleven wide column">
+      <img class="ui medium right floated image" src="<%= url_for(sale.img) if sale.img.attached?%>">
+    </div>
+  </div>
+  </a> 
 <% end %>
+</div>
 

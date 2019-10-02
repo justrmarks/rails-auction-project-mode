@@ -10,12 +10,12 @@ class BidsController < ApplicationController
     if @sale.active
       @bid.amount += @sale.current_asking_price
       if @bid.save
-        redirect_to root_path, :notice => "Bid was successfully placed." 
+        redirect_to @bid.sale, :notice => "Bid was successfully placed." 
       else
-        redirect_to root_path, :notice => "Please enter a valid amount."
+        redirect_to @bid.sale, :notice => "Please enter a valid amount."
       end
     else
-      redirect_to root_path, :notice => 'The auction has ended.'
+      redirect_to @bid.sale, :notice => 'The auction has ended.'
     end
   end
 
