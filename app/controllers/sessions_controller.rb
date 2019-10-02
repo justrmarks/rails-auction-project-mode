@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
       redirect_to root_path, notice: "Successfully logged in!"
     else
       # NOT SHOWING ALERT
-      flash.now[:notice] = "Email or password is invalid"
-      render :new
+      #flash.now[:notice] = 
+      redirect_to login_path, alert: "Email or password is invalid"
     end
   end
 
