@@ -31,15 +31,19 @@ class Sale < ApplicationRecord
     end
   end
 
+  # Returns the last Bid made on this Sale.
+  def get_last_bid
+    self.bids.max_by {|bid| bid.created_at}
+  end
+
   # Determines the winner by the last Bid made.
   def winner?
-    last_bid = self.bids.max_by {|bid| bid.created_at}
-    !!last_bid ? last_bid.user : nil
+    !!get_last_bid ? get_last_bid.user : nil
   end
 
   # Determines the current bid on the object.
   def current_asking_price
-    self.price + self.bids.sum(&:amount)
+    !!get_last_bid ? get_last_bid.amount : self.price
   end
 
   # Returns a string representation of the time remaining until the Sale closes.
