@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
   # Before showing, editing, updating, or destroying a user, look them up.
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :store]
   
   # Gets the show page for a User.
   # GET /users/:id
   def show
     if @user.id != current_user.id
-      redirect_to root_path
-      #TODO redirect_to user store
+      redirect_to store_users_path(@user)
     else
       @bidded_sales = @user.get_sales_as_bidder.sort_by {|sale| sale.bids.last.created_at}
     end
@@ -41,6 +40,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def store
+
   end
 
   private

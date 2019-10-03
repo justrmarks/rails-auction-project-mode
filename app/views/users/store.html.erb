@@ -1,0 +1,8 @@
+<div class="twelve wide centered column">
+  <h2><%= @user.username %>'s booty:</h2>
+  <div class="ui five stackable cards">
+  <% @user.sales.each do |sale| %>
+    <%= render 'assets/card', sale: sale %>
+  <% end %>
+  </div>
+</div>

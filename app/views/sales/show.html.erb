@@ -7,8 +7,8 @@
 
 
     <h2><%= @sale.name %></h2>
-    <h3>seller: <%= @sale.seller.username %></h3>
-    <%= image_tag url_for(@sale.img) if @sale.img.attached?%>
+    <h3>seller: <%= link_to @sale.seller.username, @sale.seller %></h3>
+    <%= image_tag url_for(@sale.img), class: "ui fluid image" if @sale.img.attached?%>
     <h4>Current asking price: $<%= @sale.current_asking_price %>
 
     <div class="description">

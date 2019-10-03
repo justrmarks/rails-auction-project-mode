@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
   # Routes for users.
-  resources :users, except: [:index]
+  resources :users, except: [:index] do
+    collection do 
+      get ':id/store', to: 'users#store', as: 'store'
+    end
+  end
+  
   get 'signup', to: 'users#new', as: 'signup'  
   
   # Sale resource.
