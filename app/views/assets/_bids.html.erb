@@ -1,0 +1,16 @@
+<div class="ui small feed">
+  <% bids.each do |bid| %>
+    <div class="event">
+      <div class="content">
+        <div class="summary">
+          <a class="user">
+            <%= bid.username %>
+          </a> placed a bid of $<%= bid.amount %>
+          <div class="date">
+            on <%= bid.get_time_placed %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
