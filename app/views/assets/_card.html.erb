@@ -1,0 +1,12 @@
+<a class="ui raised card" href=<%= sale_path(sale) %>>
+    <div class="center aligned content">
+      <div class="header"><%= sale.name %></div>
+      <div class="meta">
+        <span class="category"><%= sale.seller.username %></span>
+      </div>
+      <div class="description">
+      <p>for $<%= sale.current_asking_price %></p>
+      </div>
+    </div>
+    <img class="ui fluid image" src="<%= url_for(sale.img) if sale.img.attached?%>">
+  </a> 

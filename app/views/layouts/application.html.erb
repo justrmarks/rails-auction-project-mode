@@ -14,10 +14,8 @@
     <p id="alert"><%= alert %></p>
     <p id="notice"><%= notice %></p>
     <div class="ui two column grid">
-      <div class="nine wide centered column">
         <%= yield %>
-      </div>
-      <div class="three wide column">
+      <div class="two wide column">
       <nav class="ui right fixed inverted vertical menu">
         <% if logged_in? %>
           <%= link_to "Home", root_path, {class: "item"} %>       

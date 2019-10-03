@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
 
   # get_closed_sales_as_seller
-  def open_bid_sales
-    self.bids.map {|bid| bid.sale}.select {|sale| sale.active}
+  def get_sales_as_bidder
+    self.bids.map {|bid| bid.sale}.select {|sale| !sale.active}.uniq
   end
 
   def open_sales
@@ -24,4 +24,5 @@ class User < ApplicationRecord
       sale.owner_id != sale.seller_id
     end
   end
+
 end

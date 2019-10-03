@@ -32,13 +32,13 @@
     </div>
   </div>
 
-  <div class="six wide required field">
+  <div class="seven wide required field">
     <div class="ui labeled input">
       <%= f.label :closing_date, class: "ui label" %>
-      <%= f.date_field :closing_date, min: Time.zone.now %>
+      <%= f.datetime_field :closing_date, min: Time.zone.now %>
     </div>
   </div>
-
+  
   <div class="required field">
     <div class="ui labeled input">
       <%= f.label "Image", class: "ui label" %>

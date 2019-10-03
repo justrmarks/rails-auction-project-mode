@@ -81,4 +81,9 @@ class Sale < ApplicationRecord
   def self.get_closed_sales_by_seller(user_id)
     self.get_closed_sales.select {|sale| sale.seller_id == user_id}
   end
+
+  def get_closing_date
+    self.closing_date.strftime("%m/%d/%Y")
+  end
+
 end

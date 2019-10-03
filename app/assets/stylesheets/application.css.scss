@@ -25,3 +25,26 @@ nav {
 .feed {
   max-width: 600px;
 }
+
+
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 100;
+  background: #EEF1F3;
+  line-height: 1;
+}
+
+
+ @keyframes gradientBG {
+   0% {
+     background-position: 0% 50%;
+   }
+
+   50% {
+     background-position: 100% 50%;
+   }
+
+   100% {
+     background-position: 0% 50%;
+   }
+ }
