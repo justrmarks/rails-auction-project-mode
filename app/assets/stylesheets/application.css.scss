@@ -14,10 +14,16 @@
  *= require_self
  */
 
+@font-face {
+  font-family: "A Bite";
+  src: url('/assets/ABITE')
+}
+
 @import "semantic-ui";
 h1 {
   padding-top: 10px;
   padding-left: 15px;
+  font-family: "A Bite";
 }
 nav {
   max-width: 150px;
@@ -28,7 +34,7 @@ nav {
 
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 100;
   background: #EEF1F3;
   line-height: 1;
