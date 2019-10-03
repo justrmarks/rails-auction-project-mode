@@ -9,31 +9,41 @@
   <% end %>
 
 
-<%=form_with(model: sale) do |f| %>
-  <div class="field item">
-    <%= f.label "Image"%>
-    <%= f.file_field :img %>
-  </div>
+<%=form_with model: sale, class: "ui form" do |f| %>
   
-  <div class="field item">
-    <%= f.label :name, {class: "ui label"}%>
-    <%= f.text_field :name, {class: "ui labeled input"} %>
+  <div class="five wide required field">
+    <div class="ui labeled input">
+      <%= f.label "Item name", class: "ui label" %>
+      <%= f.text_field :name, placeholder: "Name" %>
+    </div>
   </div>
 
-  <div class="field item">
-    <%= f.label :description, {class: "ui label"} %>
-    <%= f.text_area :description, {class: "ui labeled input"} %>
+  <div class="fourteen wide required field">
+    <div class="ui labeled input">
+    <%= f.label :description, class: "ui label" %>
+    <%= f.text_area :description, placeholder: "Description" %>
+    </div>
   </div>
 
-  <div class="field item">
-    <%= f.label :price, "Starting bid", {class: "ui label"} %>
-    <%= f.number_field :price, {class: "ui labeled input"} %>
+  <div class="four wide required field">
+    <div class="ui labeled input">
+      <%= f.label "Starting bid", class: "ui label" %>
+      <%= f.number_field :price, placeholder: "0.00" %>
+    </div>
   </div>
 
+  <div class="six wide required field">
+    <div class="ui labeled input">
+      <%= f.label :closing_date, class: "ui label" %>
+      <%= f.date_field :closing_date, min: Time.zone.now %>
+    </div>
+  </div>
 
-  <div class="field item">
-    <%= f.label :closing_date, {class: "ui label"} %>
-    <%= f.datetime_select :closing_date, prompt: true, start_year: Date.today.year, selected: Time.zone.now, end_year: Date.today.year + 2, ampm: true%>
+  <div class="required field">
+    <div class="ui labeled input">
+      <%= f.label "Image", class: "ui label" %>
+      <%= f.file_field :img %>
+    </div>
   </div>
 
   <%= f.submit class: "ui teal button"%>
