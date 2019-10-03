@@ -9,29 +9,40 @@
   <% end %>
 
 
-<%=form_with(model: sale, class: "ui form") do |f| %>
+<%=form_with model: sale, class: "ui form" do |f| %>
   
-  <div class="five wide required field ui labeled input">
-    <%= f.label "Item name", {class: "ui label"} %>
-    <%= f.text_field :name, placeholder: "Name" %>
+  <div class="five wide required field">
+    <div class="ui labeled input">
+      <%= f.label "Item name", class: "ui label" %>
+      <%= f.text_field :name, placeholder: "Name" %>
+    </div>
   </div>
 
-  <div class="fourteen wide required field ui labeled input">
-    <%= f.label :description, {class: "ui label"} %>
+  <div class="fourteen wide required field">
+    <div class="ui labeled input">
+    <%= f.label :description, class: "ui label" %>
     <%= f.text_area :description, placeholder: "Description" %>
+    </div>
   </div>
 
   <div class="four wide required field">
     <div class="ui labeled input">
-      <%= f.label :price, "Starting bid", {class: "ui label"} %>
+      <%= f.label "Starting bid", class: "ui label" %>
       <%= f.number_field :price, placeholder: "0.00" %>
     </div>
   </div>
 
   <div class="six wide required field">
     <div class="ui labeled input">
-      <%= f.label :closing_date, {class: "ui label"} %>
+      <%= f.label :closing_date, class: "ui label" %>
       <%= f.date_field :closing_date, min: Time.zone.now %>
+    </div>
+  </div>
+
+  <div class="required field">
+    <div class="ui labeled input">
+      <%= f.label "Image", class: "ui label" %>
+      <%= f.file_field :img %>
     </div>
   </div>
 

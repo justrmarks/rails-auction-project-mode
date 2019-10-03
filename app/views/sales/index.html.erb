@@ -1,22 +1,16 @@
-<div class="ui one stackable cards feed">
+<div class="ui stackable cards">
 <% @sales.each do |sale| %>
   <a class="ui raised card" href=<%= sale_path(sale) %>>
-  <div class="ui two column grid">
-    <div class="six wide column">
-      <div class="center aligned content">
-        <div class="header"><%= sale.name %></div>
-        <div class="meta">
-          <span class="category"><%= sale.seller.username %></span>
-        </div>
-        <div class="description">
-        <p>for $<%= sale.current_asking_price %></p>
-        </div>
+    <div class="center aligned content">
+      <div class="header"><%= sale.name %></div>
+      <div class="meta">
+        <span class="category"><%= sale.seller.username %></span>
+      </div>
+      <div class="description">
+      <p>for $<%= sale.current_asking_price %></p>
       </div>
     </div>
-    <div class="ten wide column">
-      <img class="ui medium right floated image" src="<%= url_for(sale.img) if sale.img.attached?%>">
-    </div>
-  </div>
+    <img class="ui medium image" src="<%= url_for(sale.img) if sale.img.attached?%>">
   </a> 
 <% end %>
 </div>
