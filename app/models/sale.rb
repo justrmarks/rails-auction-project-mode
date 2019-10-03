@@ -86,4 +86,7 @@ class Sale < ApplicationRecord
     self.closing_date.strftime("%m/%d/%Y")
   end
 
+  def get_recent_bids(num)
+    self.bids.reverse.first(num)
+  end
 end

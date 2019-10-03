@@ -28,9 +28,5 @@
 
 <div class="bid">
   <h3>Bidding history:</h3>
-  <ul>
-  <% @recent_bids.each do |bid| %>
-    <li> $<%= bid.amount %> placed by <%= bid.username %> on <%= bid.get_time_placed %></li>
-  <% end %>
-  </ul>
+  <%= render 'assets/bids', bids: @sale.bids.reverse %>
 </div>
