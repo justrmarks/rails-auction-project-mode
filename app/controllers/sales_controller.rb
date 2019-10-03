@@ -12,7 +12,6 @@ class SalesController < ApplicationController
   # GET /sales/:id
   def show
     @bid = Bid.new
-    @recent_bids = @sale.bids.reverse.first(4)
   end
 
   # Gets a view containing a form to create a new Sale.

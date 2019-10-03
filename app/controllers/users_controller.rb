@@ -5,6 +5,12 @@ class UsersController < ApplicationController
   # Gets the show page for a User.
   # GET /users/:id
   def show
+    if @user.id != current_user.id
+      redirect_to root_path
+      #TODO redirect_to user store
+    else
+      @bidded_sales = @user.get_sales_as_bidder.sort_by {|sale| sale.bids.last.created_at}
+    end
   end
 
   # Gets the page containing a form to create a new User.
