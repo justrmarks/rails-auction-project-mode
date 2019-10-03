@@ -13,18 +13,24 @@
     <h1>ThePirateBay</h1>
     <p id="alert"><%= alert %></p>
     <p id="notice"><%= notice %></p>
-    <nav class="ui top right fixed inverted vertical menu">
-      <% if logged_in? %>
-        <%= link_to "Home", root_path, {class: "item"} %>       
-        <%= link_to "My Profile", current_user, {class: "item"} %>        
-        <%= link_to "Sell", new_sale_path, {class: "item"} %>        
-        <%= link_to "Log Out (#{current_user.username})", logout_path, {class: "item"} %>
-      <% else %>
-        <%= link_to "Log In", login_path, {class: "item"} %>
-        <%= link_to "Sign Up", signup_path, {class: "item"} %>       
-      <% end %>
-    </nav>
-    <%= yield %>
+    <div class="ui two column grid">
+      <div class="nine wide centered column">
+        <%= yield %>
+      </div>
+      <div class="three wide column">
+      <nav class="ui right fixed inverted vertical menu">
+        <% if logged_in? %>
+          <%= link_to "Home", root_path, {class: "item"} %>       
+          <%= link_to "My Profile", current_user, {class: "item"} %>        
+          <%= link_to "Sell", new_sale_path, {class: "item"} %>        
+          <%= link_to "Log Out (#{current_user.username})", logout_path, {class: "item"} %>
+        <% else %>
+          <%= link_to "Log In", login_path, {class: "item"} %>
+          <%= link_to "Sign Up", signup_path, {class: "item"} %>       
+        <% end %>
+      </nav>
+      </div>
+    </div>
   </body>
 
 </html>

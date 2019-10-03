@@ -14,7 +14,14 @@
  *= require_self
  */
 
- @import "semantic-ui";
- .feed {
-   max-width: 600px;
- }
+@import "semantic-ui";
+h1 {
+  padding-top: 10px;
+  padding-left: 15px;
+}
+nav {
+  max-width: 150px;
+}
+.feed {
+  max-width: 600px;
+}
