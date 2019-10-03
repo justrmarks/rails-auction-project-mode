@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Before showing, editing, updating, or destroying a user, look them up.
   before_action :set_user, only: [:show, :edit, :update, :store]
-  
+
   # Gets the show page for a User.
   # GET /users/:id
   def show
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   def store
-
+    @popular = @user.most_popular_sale
   end
 
   private

@@ -10,7 +10,7 @@ module RailsAuctionProjectMode
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    config.time_zone = 'Central Time (US & Canada)' 
+    config.time_zone = 'Central Time (US & Canada)'
     config.active_record.default_timezone = :local
     config.active_storage.service = :local
     # Settings in config/environments/* take precedence over those specified here.
@@ -18,6 +18,6 @@ module RailsAuctionProjectMode
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.assets.enabled = true
-    config.assets.paths << Rails.root.join('/app/assests/fonts')
+    config.assets.paths << Rails.root.join('/app/assets/fonts')
   end
 end

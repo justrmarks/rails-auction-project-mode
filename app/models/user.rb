@@ -17,6 +17,10 @@ class User < ApplicationRecord
     self.sales.select {|sale| sale.active }
   end
 
+  def get_successful_sales
+    self.sales.select {|sale| !sale.active && sale.owner_id != self.id}
+  end
+
   def won_sales
     Sale.all.select do |sale|
       !sale.active &&
@@ -24,5 +28,24 @@ class User < ApplicationRecord
       sale.owner_id != sale.seller_id
     end
   end
+
+
+  def get_total_revenue
+    self.get_successful_sales.sum {|sale| sale.get_last_bid.amount}
+  end
+
+  def sale_success_rate
+    self.get_successful_sales.count.to_f / self.sales.count
+  end
+
+  def most_popular_sale
+    self.get_successful_sales.max_by {|sale| sale.bids.count}
+  end
+
+  def get_unsuccessful_sales
+    (self.sales - self.get_successful_sales).select {|sale| !sale.active}
+  end
+
+
 
 end

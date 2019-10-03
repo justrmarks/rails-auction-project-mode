@@ -1,3 +1,8 @@
+<% if current_user == @user %>
+  <%= render 'stats' %>
+
+<% end %>
+
 <div class="twelve wide centered column">
   <h2><%= @user.username %>'s booty:</h2>
   <div class="ui five stackable cards">
