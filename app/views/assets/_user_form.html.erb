@@ -1,29 +1,32 @@
-<% if user.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="overlay">  
+  <div class="banner">
+    <p>
+    Spice up your type with CSS
+    <span>
+      THE PIRATEBAY
+    </span>
+    &mdash; no JavaScript required &mdash;
+  </p>
+  </div>
+  
+  <div class="login-page">
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+            <ul>
+              <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
       <% end %>
-    </ul>
+    <div class="form">
+      <%= form_with model: user, local: true, class: "register-form" do |f| %>
+        <%= f.text_field :username, placeholder: "username" %>
+        <%= f.password_field :password, placeholder: "password" %>
+        <%= f.password_field :password_confirmation, placeholder: "password confirmation" %>
+        <%= f.submit "Create an Account", class: "buttonnn" %>
+        <p class="message">Already registered? <%= link_to "Sign in", login_path%></p>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= form_with model: user, local: true, class: "ui form" do |f| %>
-  <div class="five wide required field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="five wide required field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="five wide required field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <%= f.submit class: "ui teal button" %>
-
-<% end %>
+</div>
