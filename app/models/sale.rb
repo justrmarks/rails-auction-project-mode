@@ -91,4 +91,12 @@ class Sale < ApplicationRecord
   def self.get_closed_sales_by_seller(user_id)
     self.get_closed_sales.select {|sale| sale.seller_id == user_id}
   end
+
+  def self.search(search)
+    if search
+      sale = Sale.get_open_sales.select {|sale| sale.name.downcase == search.downcase }
+    else
+      Sale.get_open_sales
+    end
+  end
 end

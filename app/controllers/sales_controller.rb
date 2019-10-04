@@ -5,7 +5,7 @@ class SalesController < ApplicationController
   # Gets a view with all open Sales on it.
   # GET /sales
   def index
-    @sales = Sale.get_open_sales
+    @sales = Sale.search(params[:search])
   end
 
   # Gets a view containing the Sale with given :id.
@@ -14,6 +14,7 @@ class SalesController < ApplicationController
     @bid = Bid.new
   end
 
+  
   # Gets a view containing a form to create a new Sale.
   # GET /sales/new
   def new
@@ -40,6 +41,6 @@ class SalesController < ApplicationController
 
     # Censor the params to make sure no bad guys take control of our app.
     def sale_params
-      params.require(:sale).permit(:img, :name, :description, :price, :closing_date)
+      params.require(:sale).permit(:img, :name, :description, :price, :closing_date, :search)
     end
 end
