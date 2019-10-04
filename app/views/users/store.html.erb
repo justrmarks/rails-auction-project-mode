@@ -1,9 +1,17 @@
 <div class="twelve wide centered column">
   <% if current_user == @user %>
     <%= render 'assets/seller_stats' %>
+    <h2>Your booty:</h2>
+    <% if current_user.sales.count == 0 %>
+      <p style="font-size: large"> 
+        You currently don't have anything up for auction!
+        You can click <%= link_to "here", new_sale_path %> or Sell on the sidebar to get started!
+      </p>
+    <% end %>
+  <% else %>
+    <h2><%= @user.username %>'s booty:</h2>
   <% end %>
-
-  <h2><%= @user.username %>'s booty:</h2>
+  
   <div class="ui five stackable cards">
     <% @user.sales.each do |sale| %>
       <%= render 'assets/sale_card', sale: sale %>
