@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_201134) do
   create_table "bids", force: :cascade do |t|
     t.integer "user_id"
     t.integer "sale_id"
-    t.integer "amount"
+    t.float "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_201134) do
     t.integer "owner_id"
     t.float "price"
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.datetime "closing_date"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false

@@ -5,7 +5,11 @@ class SalesController < ApplicationController
   # Gets a view with all open Sales on it.
   # GET /sales
   def index
-    @sales = Sale.get_open_sales
+    if !logged_in?
+      redirect_to login_path
+    else
+      @sales = Sale.get_open_sales
+    end
   end
 
   # Gets a view containing the Sale with given :id.
@@ -28,6 +32,7 @@ class SalesController < ApplicationController
       redirect_to root_path, notice: "Sale successfully created!"
     else
       # redirect_to new_sale_path, alert: "One or more of the fields were filled out incorrectly."
+      p @sale.errors.full_messages
       render 'new'
     end
   end

@@ -13,10 +13,10 @@ class Sale < ApplicationRecord
   # Return a Sale's seller's name.
   delegate :username, prefix: "seller", to: :seller
   validates :name, presence: true
-  validates :description, presence: true, length: {maximum: 100,
-    too_long: "100 characters is the maximum allowed"}
+  validates :description, presence: true, length: {maximum: 1000,
+    too_long: "1000 characters is the maximum allowed"}
   validates :price, presence: true
-  
+
 
   # A callback on Sale access that checks whether or not a Sale should be closed.
   after_find do |sale|
@@ -90,5 +90,17 @@ class Sale < ApplicationRecord
   # Get a list of closed Sales created by seller with id user_id.
   def self.get_closed_sales_by_seller(user_id)
     self.get_closed_sales.select {|sale| sale.seller_id == user_id}
+  end
+
+# returns list of increment amounts relative to current asking price
+  def get_bid_increments
+    result = [
+      self.current_asking_price * 0.1,
+      self.current_asking_price * 0.2,
+      self.current_asking_price * 0.4,
+      self.current_asking_price * 0.6
+    ]
+    return result.map {|num| num.round(2)}
+
   end
 end
