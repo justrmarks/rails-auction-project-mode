@@ -21,6 +21,9 @@
       <div class="two wide column">
         <nav class="ui right fixed inverted vertical menu">
           <% if logged_in? %>
+            <div class="item">
+              <img class="ui image" <%= image_tag("Sept-auction.png") %> 
+            </div>
             <%= link_to "Home", root_path, {class: "item"} %>
             <%= link_to "My Profile", current_user, {class: "item"} %>
             <%= link_to "Sell", new_sale_path, {class: "item"} %>
