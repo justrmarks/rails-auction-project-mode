@@ -36,7 +36,7 @@ class Sale < ApplicationRecord
 
   # Get the last num Bids made on this Sale.
   def get_recent_bids(num)
-    self.bids.order_by {|bid| bid.created_at}.last(num)
+    self.bids.sort_by {|bid| bid.created_at}.last(num)
   end
 
   # Returns the last Bid made on this Sale.
