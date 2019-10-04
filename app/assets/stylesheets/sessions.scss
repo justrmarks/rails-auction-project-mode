@@ -16,3 +16,241 @@
   text-decoration: none;
 }
 
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  position: relative;
+  top: 300px
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.buttonnn {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: rgb(20, 19, 19);
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.buttonnn:hover,
+.buttonnn:active,
+.buttonnn:focus {
+  background: #43A047;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.form .register-form {
+  display: block;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.container:before,
+.container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.container .info span .fa {
+  color: #EF3B3A;
+}
+
+@function makelongshadow($length,$angle) {
+  $val: 0px 0px transparent;
+  @for $i from 1 through $length {
+    $val: #{$val}, #{$i}px #{$i*$angle}px #aaa;
+  }
+  @return $val;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700,900');
+
+body {
+  background: radial-gradient(#fff, #aaa);
+  background-size: 100vw 100vh; 
+  overflow: hidden;
+  padding-top: 40vh;
+}
+
+.txt {
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 12vmin;
+  font-weight: 700;
+  animation: netflix_style 3.5s infinite;
+  outline: none;
+  white-space: nowrap;
+}
+
+@keyframes netflix_style {
+  0% {
+    text-shadow: makelongshadow(100,1);
+    color:#f3f3f3;
+    transform: scale(1.5, 1.5);
+  }
+  10% {
+    text-shadow: makelongshadow(100,1.5);
+    color:#f3f3f3;
+    transform: scale(1.5, 1.5);
+  }
+  15% {
+     color:#f3f3f3;
+  }
+  20% {    
+    color:#e90418;
+    text-shadow: none;
+    transform: scale(1.1, 1.1);
+  }
+  75% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;    
+    color:#e90418;
+    transform: scale(0.85, 0.9);
+  }
+  
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.overlay {
+  font: 400 1em/1.5 "Neuton";
+  background: #0b0c09;
+  color: rgba(255, 255, 255, .25);
+  text-align: center;
+  margin: 0;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
+}
+
+.banner p {
+  text-transform: uppercase;
+  letter-spacing: .5em;
+  display: inline-block;
+  border: 4px double rgba(255, 255, 255, .25);
+  border-width: 4px 0;
+  padding: 1.5em 0em;
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  width: 40em;
+  margin: 0 0 0 -20em;
+
+  span {
+
+    font: 700 4em/1 "Oswald", sans-serif;
+    letter-spacing: 0;
+    padding: .25em 0 .325em;
+    display: block;
+    margin: 0 auto;
+    text-shadow: 0 0 80px rgba(255, 255, 255, .5);
+
+    /* Clip Background Image */
+
+    background: url(http://f.cl.ly/items/010q3E1u3p2Q0j1L1S1o/animated_text_fill.png) repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Animate Background Image */
+
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: aitf 80s linear infinite;
+
+    /* Activate hardware acceleration for smoother animations */
+
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+
+  }
+}
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
