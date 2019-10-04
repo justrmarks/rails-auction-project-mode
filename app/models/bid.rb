@@ -10,4 +10,6 @@ class Bid < ApplicationRecord
   def get_time_placed
     self.created_at.strftime("%m/%d/%Y at %l:%M%p")
   end
+
+
 end
