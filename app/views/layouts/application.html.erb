@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body >
     <h1>ThePirateBay</h1>
 
     <p id="alert"><%= alert %></p>
@@ -29,7 +29,7 @@
             <%= link_to "My Store", store_users_path(current_user), {class: "item"} %>
             <%= link_to "Sell", new_sale_path, {class: "item"} %>
             <%= link_to "Log Out (#{current_user.username})", logout_path, {class: "item"} %>
-            
+
         </nav>
       </div>
     <% end %>
