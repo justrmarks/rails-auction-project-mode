@@ -5,12 +5,12 @@
     <div class="eight wide column"> 
       <h2><%= @sale.name %></h2>
       <h3>seller: <%= link_to @sale.seller.username, @sale.seller %></h3>
-      <%= image_tag url_for(@sale.img), class: "ui fluid image" if @sale.img.attached?%>
+      <%= image_tag url_for(@sale.img), class: "ui fluid image" if @sale.img.attached? %>
       <h4>Current asking price: $<%= @sale.current_asking_price %>
       
       <div class="description">
-        <h3>Item Description: </h3>
-        <p><%= @sale.description%></p>
+        <h3>Item Description:</h3>
+        <p><%= @sale.description %></p>
       </div>
 
       <div class="time">
@@ -32,7 +32,7 @@
           <h3>Place your bid!</h3>
           <%= form_with model: @bid, url: create_bid_path do |f| %>
             <div class="action">
-              <%= f.select :amount, ["5", "10", "25","50", "75", "100"]%>
+              <%= f.select :amount, ["5", "10", "25","50", "75", "100"] %>
               <%= f.hidden_field :sale_id, value: @sale.id %>
               <%= f.submit "Bid"%>
             </div>
