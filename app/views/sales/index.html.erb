@@ -1,5 +1,13 @@
 <div class="twelve wide centered column">
-
+  <h4>Search sales:</h4>
+  <div class="ui action left icon input", style="margin-bottom: 20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+    <%= form_tag(sales_path, method: :get, class: "ui action left icon input") do %>
+      <i class="search icon">
+      </i>
+      <%= text_field_tag(:search, params[:search], placeholder: "Search") %>
+      <button class="ui secondary button">Search</button>
+    <% end %>
+  </div>
   <div class="ui five stackable cards">
     <% @sales.each do |sale| %>
       <%= render 'assets/sale_card', sale: sale %>

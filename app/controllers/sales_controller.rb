@@ -8,7 +8,7 @@ class SalesController < ApplicationController
     if !logged_in?
       redirect_to login_path
     else
-      @sales = Sale.get_open_sales
+      @sales = Sale.search(params[:search])
     end
   end
 
@@ -18,6 +18,7 @@ class SalesController < ApplicationController
     @bid = Bid.new
   end
 
+  
   # Gets a view containing a form to create a new Sale.
   # GET /sales/new
   def new

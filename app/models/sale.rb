@@ -92,7 +92,14 @@ class Sale < ApplicationRecord
     self.get_closed_sales.select {|sale| sale.seller_id == user_id}
   end
 
-# returns list of increment amounts relative to current asking price
+  def self.search(search)
+    if search
+      sale = Sale.get_open_sales.select {|sale| sale.name.downcase == search.downcase }
+    else
+      Sale.get_open_sales
+    end
+
+  # returns list of increment amounts relative to current asking price
   def get_bid_increments
     result = [
       self.current_asking_price * 0.1,
@@ -101,6 +108,5 @@ class Sale < ApplicationRecord
       self.current_asking_price * 0.6
     ]
     return result.map {|num| num.round(2)}
-
   end
 end
