@@ -1,0 +1,19 @@
+<div class="update-page">
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+            <ul>
+              <% user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+    <div class="form">
+      <%= form_with model: user, local: true, class: "register-form" do |f| %>
+        <%= f.text_field :username, placeholder: "username" %>
+        <%= f.password_field :password, placeholder: "password" %>
+        <%= f.password_field :password_confirmation, placeholder: "password confirmation" %>
+        <%= f.submit "UPDATE", class: "buttonnn" %>
+      <% end %>
+    </div>
+  </div>
