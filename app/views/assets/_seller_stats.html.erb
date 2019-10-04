@@ -11,31 +11,7 @@
     </div>
   <% end %>
       
-  <div class="ui segment">
-    <h3>Unsuccessful sales:</h3>
-    <div class="ui large feed">
-      <% @user.get_unsuccessful_sales.each do |sale| %>
-        <div class="event">
-            
-          <div class="label">
-            <img class="ui fluid rounded image" src="<%= url_for(sale.img) if sale.img.attached? %>">
-          </div>
-            
-          <div class="content">
-              
-            <div class="summary">
-              Sale for <%= link_to sale.name, sale %> closed with no bids
-              <div class="date">
-                on <%= sale.get_closing_date %>
-              </div>
-            </div>
-            
-          </div>
-          
-        </div>
-      <% end %>
-    </div>
-  </div>
-
+  <%= render 'assets/sales_segment', sales: @user.get_successful_sales %>
+  <%= render 'assets/sales_segment', sales: @user.get_unsuccessful_sales %>
 </div>
 
