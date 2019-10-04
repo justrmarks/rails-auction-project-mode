@@ -34,6 +34,11 @@ class Sale < ApplicationRecord
     end
   end
 
+  # Get the last num Bids made on this Sale.
+  def get_recent_bids(num)
+    self.bids.sort_by {|bid| bid.created_at}.last(num)
+  end
+
   # Returns the last Bid made on this Sale.
   def get_last_bid
     self.bids.max_by {|bid| bid.created_at}
@@ -47,6 +52,11 @@ class Sale < ApplicationRecord
   # Determines the current bid on the object.
   def current_asking_price
     !!get_last_bid ? get_last_bid.amount : self.price
+  end
+
+  # Returns a string representation of the Sale's closing date.
+  def get_closing_date
+    self.closing_date.strftime("%m/%d/%Y")
   end
 
   # Returns a string representation of the time remaining until the Sale closes.
@@ -80,13 +90,5 @@ class Sale < ApplicationRecord
   # Get a list of closed Sales created by seller with id user_id.
   def self.get_closed_sales_by_seller(user_id)
     self.get_closed_sales.select {|sale| sale.seller_id == user_id}
-  end
-
-  def get_closing_date
-    self.closing_date.strftime("%m/%d/%Y")
-  end
-
-  def get_recent_bids(num)
-    self.bids.reverse.first(num)
   end
 end

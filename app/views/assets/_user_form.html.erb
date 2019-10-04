@@ -1,0 +1,29 @@
+<% if user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: user, local: true, class: "ui form" do |f| %>
+  <div class="five wide required field">
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="five wide required field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="five wide required field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.submit class: "ui teal button" %>
+
+<% end %>

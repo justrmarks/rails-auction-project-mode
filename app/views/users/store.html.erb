@@ -1,13 +1,12 @@
-<% if current_user == @user %>
-  <%= render 'stats' %>
-
-<% end %>
-
 <div class="twelve wide centered column">
+  <% if current_user == @user %>
+    <%= render 'assets/seller_stats' %>
+  <% end %>
+
   <h2><%= @user.username %>'s booty:</h2>
   <div class="ui five stackable cards">
-  <% @user.sales.each do |sale| %>
-    <%= render 'assets/card', sale: sale %>
-  <% end %>
+    <% @user.sales.each do |sale| %>
+      <%= render 'assets/sale_card', sale: sale %>
+    <% end %>
   </div>
 </div>

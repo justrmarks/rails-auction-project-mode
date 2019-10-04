@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Account succesfully created!"
+      redirect_to root_path, notice: "Account successfully created!"
     else
       render 'new'
     end
@@ -36,12 +36,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: "Account succesfully updated!"
+      redirect_to root_path, notice: "Account successfully updated!"
     else
       render 'edit'
     end
   end
 
+  # Takes us to a User's store page (show page for sellers).
+  # GET /users/:id/store
   def store
     @popular = @user.most_popular_sale
   end
