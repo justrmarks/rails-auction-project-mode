@@ -98,7 +98,7 @@ class Sale < ApplicationRecord
     else
       Sale.get_open_sales
     end
-
+  end
   # returns list of increment amounts relative to current asking price
   def get_bid_increments
     result = [

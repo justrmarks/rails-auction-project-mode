@@ -70,7 +70,7 @@ body {
 
  body {
    background: radial-gradient(ellipse at center, rgba(255, 254, 234, 1) 0%, rgba(255, 254, 234, 1) 35%, #B7E8EB 100%);
-   overflow: hidden;
+   overflow: auto;
  }
 
  .ocean {
@@ -119,3 +119,15 @@ body {
      transform: translate3d(0, 5px, 0);
    }
  }
+
+ .myimage {
+   max-width:100%;
+   max-height:100%;
+ }
+
+  .myfooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
