@@ -1,17 +1,22 @@
 <div class="ui large feed">
   <% @user.won_sales.each do |sale| %>
     <div class="event">
+      
       <div class="label">
         <img class="ui fluid rounded image" src="<%= url_for(sale.img) if sale.img.attached?%>">
       </div>
+      
       <div class="content">
+        
         <div class="summary">
-        You purchased <%= link_to sale.name, sale %> 
+          You purchased <%= link_to sale.name, sale %> 
           <div class="date">
             on <%= sale.get_closing_date %>
           </div>
         </div>
+      
       </div>
+    
     </div>
   <% end %>
 </div>

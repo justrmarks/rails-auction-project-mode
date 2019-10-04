@@ -1,15 +1,17 @@
-<%= form_with url: sessions_path, class: "ui form" do |f| %>
+<div class="nine wide centered column">
+  <%= form_with url: sessions_path, class: "ui form" do |f| %>
 
-  <div class="five wide required field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
+    <div class="five wide required field">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
 
-  <div class="five wide required field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+    <div class="five wide required field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
 
-  <%= f.submit "Log in", class: "ui teal button"%>
+    <%= f.submit "Log in", class: "ui teal button"%>
   
-<% end %>
+  <% end %>
+</div>

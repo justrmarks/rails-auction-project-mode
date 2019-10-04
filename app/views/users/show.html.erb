@@ -1,33 +1,43 @@
 <div class="twelve wide centered column">
   <h2>Hello, <%= @user.username %>!</h2>
   <div class="ui two column horizontally divided grid">
+    
     <div class="six wide column">
       <h3>Your purchase history:</h3>
-      <%= render 'feed', user: @user %>
+      <%= render 'assets/purchase_history_feed', user: @user %>
     </div>
+    
     <div class="ten wide column">
       <h3>Your active auctions:</h3>
       <div class="ui large feed">
         <% @bidded_sales.each do |sale| %>
           <div class="event">
+            
             <div class="label">
               <img class="ui fluid rounded image" src="<%= url_for(sale.img) if sale.img.attached?%>">
             </div>
+            
             <div class="content">
+              
               <div class="summary">
                 Most recent bids on <%= link_to sale.name, sale %>:
                 <div class="date">
                   updated on <%= sale.get_last_bid.get_time_placed %>
                 </div>
               </div>
+              
               <div class="extra text">
-                <%= render 'assets/bids', bids: sale.get_recent_bids(5) %>
+                <%= render 'assets/bids_feed', bids: sale.get_recent_bids(5) %>
               </div>
+            
             </div>
+          
           </div>
         <% end %>
       </div>
     </div>
+  
   </div>
-<%= link_to "Edit my account", edit_user_path(@user) %>
+
+  <%= link_to "Edit my account", edit_user_path(@user) %>
 </div>
