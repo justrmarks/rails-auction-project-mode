@@ -1,17 +1,16 @@
 <div class="ui raised segments">
-  
+
   <div class="ui segment">
     <h3>Your store's total revenue: $<%= @user.get_total_revenue %></h3>
   </div>
-  
+
   <% if @popular %>
     <div class="ui segment">
       <h3>Most popular sale:</h3>
       <%= link_to @popular.name, @popular %> for <%= @popular.current_asking_price %></p>
     </div>
   <% end %>
-      
-  <%= render 'assets/sales_segment', sales: @user.get_successful_sales %>
-  <%= render 'assets/sales_segment', sales: @user.get_unsuccessful_sales %>
-</div>
 
+  <%= render 'assets/sales_segment', sales: @user.get_successful_sales, successful: true %>
+  <%= render 'assets/sales_segment', sales: @user.get_unsuccessful_sales, successful: false %>
+</div>

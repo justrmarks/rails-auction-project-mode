@@ -93,11 +93,12 @@ class Sale < ApplicationRecord
   end
 
   def self.search(search)
-    if search
-      sale = Sale.get_open_sales.select {|sale| sale.name.downcase == search.downcase }
+    if search && search.length > 0
+      sale = Sale.get_open_sales.select {|sale| sale.name.downcase.include? search.downcase }
     else
       Sale.get_open_sales
     end
+  end
 
   # returns list of increment amounts relative to current asking price
   def get_bid_increments
@@ -109,4 +110,5 @@ class Sale < ApplicationRecord
     ]
     return result.map {|num| num.round(2)}
   end
+
 end
