@@ -8,5 +8,6 @@
       <p>Current price: $<%= sale.current_asking_price %></p>
       </div>
     </div>
-    <img class="myimage" src="<%= url_for(sale.img) if sale.img.attached? %>">
-  </a> 
+    <img class="ui small image" src="<%= url_for(sale.img) if sale.img.attached? %>">
+  </a>
+
