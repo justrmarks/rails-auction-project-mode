@@ -41,6 +41,6 @@ class SalesController < ApplicationController
 
     # Censor the params to make sure no bad guys take control of our app.
     def sale_params
-      params.require(:sale).permit(:img, :name, :description, :price, :closing_date, :search)
+      params.require(:sale).permit(:img, :name, :description, :price, :closing_date)
     end
 end
